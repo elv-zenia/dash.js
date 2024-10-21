@@ -5376,7 +5376,9 @@ function DashParser(config) {
   var instance, logger, matchers, converter, objectIron;
   function setup() {
     logger = debug.getLogger(instance);
-    matchers = [new _matchers_DurationMatcher__WEBPACK_IMPORTED_MODULE_4__["default"](), new _matchers_DateTimeMatcher__WEBPACK_IMPORTED_MODULE_5__["default"](), new _matchers_NumericMatcher__WEBPACK_IMPORTED_MODULE_6__["default"](), new _matchers_LangMatcher__WEBPACK_IMPORTED_MODULE_7__["default"](), new _matchers_StringMatcher__WEBPACK_IMPORTED_MODULE_3__["default"]() // last in list to take precedence over NumericMatcher
+    matchers = [new _matchers_DurationMatcher__WEBPACK_IMPORTED_MODULE_4__["default"](), new _matchers_DateTimeMatcher__WEBPACK_IMPORTED_MODULE_5__["default"](), new _matchers_NumericMatcher__WEBPACK_IMPORTED_MODULE_6__["default"](),
+    // new LangMatcher(),
+    new _matchers_StringMatcher__WEBPACK_IMPORTED_MODULE_3__["default"]() // last in list to take precedence over NumericMatcher
     ];
     converter = new _externals_xml2json__WEBPACK_IMPORTED_MODULE_2__["default"]({
       escapeMode: false,

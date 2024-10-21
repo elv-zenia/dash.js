@@ -4551,8 +4551,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _core_FactoryMaker__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../core/FactoryMaker */ "./src/core/FactoryMaker.js");
 /* harmony import */ var _models_DashManifestModel__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./models/DashManifestModel */ "./src/dash/models/DashManifestModel.js");
 /* harmony import */ var _models_PatchManifestModel__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./models/PatchManifestModel */ "./src/dash/models/PatchManifestModel.js");
-/* harmony import */ var bcp_47_normalize__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! bcp-47-normalize */ "./node_modules/bcp-47-normalize/index.js");
-/* harmony import */ var bcp_47_normalize__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(bcp_47_normalize__WEBPACK_IMPORTED_MODULE_9__);
 /**
  * The copyright in this software is being made available under the BSD License,
  * included below. This software may be subject to other third party and contributor
@@ -4583,7 +4581,6 @@ __webpack_require__.r(__webpack_exports__);
  *  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  *  POSSIBILITY OF SUCH DAMAGE.
  */
-
 
 
 
@@ -5608,8 +5605,7 @@ function DashAdapter() {
     mediaInfo.codec = 'cea-608-in-SEI';
     mediaInfo.isEmbedded = true;
     mediaInfo.isFragmented = false;
-    var normLang = bcp_47_normalize__WEBPACK_IMPORTED_MODULE_9___default()(lang);
-    mediaInfo.lang = normLang ? normLang : lang;
+    mediaInfo.lang = lang;
     mediaInfo.roles = ['caption'];
     mediaInfo.rolesWithSchemeIdUri = [{
       schemeIdUri: 'urn:mpeg:dash:role:2011',
@@ -10538,7 +10534,9 @@ function DashParser(config) {
   var instance, logger, matchers, converter, objectIron;
   function setup() {
     logger = debug.getLogger(instance);
-    matchers = [new _matchers_DurationMatcher__WEBPACK_IMPORTED_MODULE_4__["default"](), new _matchers_DateTimeMatcher__WEBPACK_IMPORTED_MODULE_5__["default"](), new _matchers_NumericMatcher__WEBPACK_IMPORTED_MODULE_6__["default"](), new _matchers_LangMatcher__WEBPACK_IMPORTED_MODULE_7__["default"](), new _matchers_StringMatcher__WEBPACK_IMPORTED_MODULE_3__["default"]() // last in list to take precedence over NumericMatcher
+    matchers = [new _matchers_DurationMatcher__WEBPACK_IMPORTED_MODULE_4__["default"](), new _matchers_DateTimeMatcher__WEBPACK_IMPORTED_MODULE_5__["default"](), new _matchers_NumericMatcher__WEBPACK_IMPORTED_MODULE_6__["default"](),
+    // new LangMatcher(),
+    new _matchers_StringMatcher__WEBPACK_IMPORTED_MODULE_3__["default"]() // last in list to take precedence over NumericMatcher
     ];
     converter = new _externals_xml2json__WEBPACK_IMPORTED_MODULE_2__["default"]({
       escapeMode: false,
@@ -25316,9 +25314,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _core_EventBus__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../core/EventBus */ "./src/core/EventBus.js");
 /* harmony import */ var _core_FactoryMaker__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../core/FactoryMaker */ "./src/core/FactoryMaker.js");
 /* harmony import */ var _core_Debug__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../core/Debug */ "./src/core/Debug.js");
-/* harmony import */ var bcp_47_normalize__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! bcp-47-normalize */ "./node_modules/bcp-47-normalize/index.js");
-/* harmony import */ var bcp_47_normalize__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(bcp_47_normalize__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var bcp_47_match__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! bcp-47-match */ "./node_modules/bcp-47-match/index.js");
 /**
  * The copyright in this software is being made available under the BSD License,
  * included below. This software may be subject to other third party and contributor
@@ -25349,8 +25344,6 @@ __webpack_require__.r(__webpack_exports__);
  *  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  *  POSSIBILITY OF SUCH DAMAGE.
  */
-
-
 
 
 
@@ -25616,7 +25609,7 @@ function MediaController() {
   }
   function matchSettingsLang(settings, track) {
     try {
-      return !settings.lang || settings.lang instanceof RegExp ? track.lang.match(settings.lang) : track.lang !== '' ? (0,bcp_47_match__WEBPACK_IMPORTED_MODULE_6__.extendedFilter)(track.lang, bcp_47_normalize__WEBPACK_IMPORTED_MODULE_5___default()(settings.lang)).length > 0 : false;
+      return !settings.lang || track.lang.match(settings.lang);
     } catch (e) {
       return false;
     }
