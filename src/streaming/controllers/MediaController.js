@@ -33,8 +33,6 @@ import Events from '../../core/events/Events';
 import EventBus from '../../core/EventBus';
 import FactoryMaker from '../../core/FactoryMaker';
 import Debug from '../../core/Debug';
-import bcp47Normalize from 'bcp-47-normalize';
-import {extendedFilter} from 'bcp-47-match';
 
 function MediaController() {
 
@@ -341,10 +339,7 @@ function MediaController() {
 
     function matchSettingsLang(settings, track) {
         try {
-            return !settings.lang ||
-            (settings.lang instanceof RegExp) ?
-                (track.lang.match(settings.lang)) : track.lang !== '' ?
-                    (extendedFilter(track.lang, bcp47Normalize(settings.lang)).length > 0) : false;
+            return !settings.lang || (track.lang.match(settings.lang));
         } catch (e) {
             return false
         }

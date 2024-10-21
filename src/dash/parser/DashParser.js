@@ -57,7 +57,7 @@ function DashParser(config) {
             new DurationMatcher(),
             new DateTimeMatcher(),
             new NumericMatcher(),
-            new LangMatcher(),
+            // new LangMatcher(),
             new StringMatcher()// last in list to take precedence over NumericMatcher
         ];
 

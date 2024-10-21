@@ -38,7 +38,6 @@ import Event from './vo/Event';
 import FactoryMaker from '../core/FactoryMaker';
 import DashManifestModel from './models/DashManifestModel';
 import PatchManifestModel from './models/PatchManifestModel';
-import bcp47Normalize from 'bcp-47-normalize';
 
 /**
  * @module DashAdapter
@@ -1121,9 +1120,9 @@ function DashAdapter() {
             }
         }
 
-        mediaInfo.essentialProperties = dashManifestModel.getEssentialPropertiesForAdaptation(realAdaptation);        
+        mediaInfo.essentialProperties = dashManifestModel.getEssentialPropertiesForAdaptation(realAdaptation);
         mediaInfo.essentialPropertiesAsArray = dashManifestModel.getEssentialPropertiesAsArrayForAdaptation(realAdaptation);
-        
+
         mediaInfo.isFragmented = dashManifestModel.getIsFragmented(realAdaptation);
         mediaInfo.isEmbedded = false;
 
@@ -1137,8 +1136,7 @@ function DashAdapter() {
         mediaInfo.codec = 'cea-608-in-SEI';
         mediaInfo.isEmbedded = true;
         mediaInfo.isFragmented = false;
-        let normLang = bcp47Normalize(lang);
-        mediaInfo.lang = (normLang) ? normLang : lang;
+        mediaInfo.lang = lang;
         mediaInfo.roles = ['caption'];
         mediaInfo.rolesWithSchemeIdUri = [{schemeIdUri:'urn:mpeg:dash:role:2011', value:'caption'}];
     }
