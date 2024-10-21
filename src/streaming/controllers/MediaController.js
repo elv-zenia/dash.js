@@ -409,9 +409,9 @@ function MediaController() {
 
             // If the track has a language and we can normalize the target language check if we got a match
             else if (track.lang !== '') {
-                const normalizedSettingsLang = bcp47Normalize(settings.lang);
+                const normalizedSettingsLang = settings.lang;
                 if (normalizedSettingsLang) {
-                    matchLang = extendedFilter(track.lang, normalizedSettingsLang).length > 0
+                    matchLang = (track.lang)
                 }
             }
 
