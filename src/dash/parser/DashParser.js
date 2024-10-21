@@ -35,7 +35,6 @@ import StringMatcher from './matchers/StringMatcher';
 import DurationMatcher from './matchers/DurationMatcher';
 import DateTimeMatcher from './matchers/DateTimeMatcher';
 import NumericMatcher from './matchers/NumericMatcher';
-import LangMatcher from './matchers/LangMatcher';
 import RepresentationBaseValuesMap from './maps/RepresentationBaseValuesMap';
 import SegmentValuesMap from './maps/SegmentValuesMap';
 
